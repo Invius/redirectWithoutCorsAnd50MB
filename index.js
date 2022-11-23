@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
-const port = 1670;
+const port = 80;
 
 app.use(express.raw({
   inflate: true,
