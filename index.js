@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import axios from 'axios';
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ app.use(express.raw({
 
 app.use(bodyParser.json({limit: '50mb'})); 
 
-app.get("*", function (req, res) {
+/* app.get("*", function (req, res) {
   //res.send(req.url + " : " + process.env.API_TO_REDIRECT);
 
   res.redirect(`${process.env.API_TO_REDIRECT}${req.url}`);
@@ -28,6 +29,15 @@ app.post("*", function (req, res) {
   //res.send(req.url + " : " + process.env.API_TO_REDIRECT);
 
   res.redirect(307, `${process.env.API_TO_REDIRECT}${req.url}`);
+}); */
+
+app.get("/", function (req, res) {
+  //res.send(req.url + " : " + process.env.API_TO_REDIRECT);
+
+  axios.get(`${process.env.API_TO_REDIRECT}/`)
+  .then( (response) => {
+    res.send(response.data);
+  });
 });
 
 app.listen(port, () => {
