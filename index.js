@@ -57,7 +57,7 @@ app.post("*", function (req, res) {
   try {
     const payload =  JSON.parse(req.body || {});
 
-    configAxios.headers['store-origin'] = JSON.stringify({req.headers}); //req.socket ? req.socket.remoteAddress : 'error';
+    configAxios.headers['store-origin'] = JSON.stringify({h: req.headers}); //req.socket ? req.socket.remoteAddress : 'error';
 
     axios.post(`${process.env.API_TO_REDIRECT}${req.url}`,
     payload, configAxios)
